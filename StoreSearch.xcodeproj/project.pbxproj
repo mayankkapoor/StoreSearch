@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		544A528319AA8969005D8F20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544A528219AA8969005D8F20 /* AppDelegate.swift */; };
-		544A528519AA8969005D8F20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544A528419AA8969005D8F20 /* ViewController.swift */; };
+		544A528519AA8969005D8F20 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544A528419AA8969005D8F20 /* SearchViewController.swift */; };
 		544A528819AA8969005D8F20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544A528619AA8969005D8F20 /* Main.storyboard */; };
 		544A528A19AA8969005D8F20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 544A528919AA8969005D8F20 /* Images.xcassets */; };
 		544A529619AA896A005D8F20 /* StoreSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544A529519AA896A005D8F20 /* StoreSearchTests.swift */; };
@@ -28,7 +28,7 @@
 		544A527D19AA8969005D8F20 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		544A528119AA8969005D8F20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		544A528219AA8969005D8F20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		544A528419AA8969005D8F20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		544A528419AA8969005D8F20 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		544A528719AA8969005D8F20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		544A528919AA8969005D8F20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		544A528F19AA896A005D8F20 /* StoreSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				544A528219AA8969005D8F20 /* AppDelegate.swift */,
-				544A528419AA8969005D8F20 /* ViewController.swift */,
+				544A528419AA8969005D8F20 /* SearchViewController.swift */,
 				544A528619AA8969005D8F20 /* Main.storyboard */,
 				544A528919AA8969005D8F20 /* Images.xcassets */,
 				544A528019AA8969005D8F20 /* Supporting Files */,
@@ -208,7 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				544A528519AA8969005D8F20 /* ViewController.swift in Sources */,
+				544A528519AA8969005D8F20 /* SearchViewController.swift in Sources */,
 				544A528319AA8969005D8F20 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +326,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = StoreSearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -337,6 +338,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = StoreSearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
