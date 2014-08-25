@@ -12,6 +12,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                             
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
+
+	var searchResults: [String] = Array(count: 3, repeatedValue: "")
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,13 +26,23 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	}
 	
 	func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-		return 0
+		return searchResults.count
 	}
 	
 	func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-		return nil
+		var cell = tableView.dequeueReusableCellWithIdentifier("SearchResultCell") as UITableViewCell
+		cell.textLabel.text = searchResults[indexPath.row]
+		return cell
 	}
-
+	
+	func searchBarSearchButtonClicked(searchBar: UISearchBar!) {
+		println("You searched for \(searchBar.text)")
+		for i in 0...2 {
+			let searchText: String = "Fake search result \(i) for \(searchBar.text)" as String
+			searchResults[i] = searchText
+		}
+		tableView.reloadData()
+	}
 
 }
 
