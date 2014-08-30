@@ -53,6 +53,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 		return cell
 	}
 	
+// MARK: UISearchBarDelegate
+	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar!) {
 //		println("You searched for \(searchBar.text)")
 		searchBar.resignFirstResponder()
@@ -68,5 +70,18 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 		tableView.reloadData()
 	}
 
+// MARK: UITableViewDelegate
+	
+	func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	}
+	
+	func tableView(tableView: UITableView!, willSelectRowAtIndexPath indexPath: NSIndexPath!) -> NSIndexPath! {
+		if searchResults?.count == 0 {
+			return nil
+		} else {
+			return indexPath
+		}
+	}
 }
 
