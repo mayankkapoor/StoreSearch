@@ -13,7 +13,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
 
-	var searchResults: [String] = Array(count: 3, repeatedValue: "")
+	var searchResults: [SearchResult]?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,20 +26,44 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	}
 	
 	func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-		return searchResults.count
+		if let unwrappedResults = searchResults {
+			if unwrappedResults.count == 0 {
+				return 1
+			} else {
+				return unwrappedResults.count
+			}
+		} else {
+			return 0
+		}
 	}
 	
 	func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-		var cell = tableView.dequeueReusableCellWithIdentifier("SearchResultCell") as UITableViewCell
-		cell.textLabel.text = searchResults[indexPath.row]
+		var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "SearchResultCell")
+		if let unwrappedResults = searchResults {
+			if unwrappedResults.count != 0 {
+//				println("unwrappedResults[\(indexPath.row)].name = \(unwrappedResults[indexPath.row].name)")
+//				println("unwrappedResults[\(indexPath.row)].artistName = \(unwrappedResults[indexPath.row].artistName)")
+				cell.textLabel.text = unwrappedResults[indexPath.row].name!
+				cell.detailTextLabel.text = unwrappedResults[indexPath.row].artistName!
+			} else {
+				cell.textLabel.text = "No results found"
+				cell.detailTextLabel.text = ""
+			}
+		}
 		return cell
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar!) {
-		println("You searched for \(searchBar.text)")
-		for i in 0...2 {
-			let searchText: String = "Fake search result \(i) for \(searchBar.text)" as String
-			searchResults[i] = searchText
+//		println("You searched for \(searchBar.text)")
+		searchBar.resignFirstResponder()
+		searchResults = []
+		if searchBar.text != "justin bieber" {
+			for i in 0...2 {
+				let searchResultText = "Fake search result \(i) for "
+				let searchResult: SearchResult = SearchResult(name: searchResultText, artistName: searchBar.text)
+				//			println("searchResult.name = \(searchResult.name) & searchResult.artistName = \(searchResult.artistName)")
+				searchResults?.append(searchResult)
+			}
 		}
 		tableView.reloadData()
 	}
