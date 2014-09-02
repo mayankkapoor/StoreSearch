@@ -12,12 +12,18 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                             
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
+	
+	let SearchResultCellIdentifier = "SearchResultCell"
 
 	var searchResults: [SearchResult]?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		var cellNib = UINib(nibName: SearchResultCellIdentifier, bundle: nil)
+		self.tableView.registerNib(cellNib, forCellReuseIdentifier: SearchResultCellIdentifier)
+		
+		self.tableView.rowHeight = 80
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -38,16 +44,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	}
 	
 	func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-		var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "SearchResultCell")
+		var cell = tableView.dequeueReusableCellWithIdentifier(SearchResultCellIdentifier) as SearchResultCell
 		if let unwrappedResults = searchResults {
-			if unwrappedResults.count != 0 {
-//				println("unwrappedResults[\(indexPath.row)].name = \(unwrappedResults[indexPath.row].name)")
-//				println("unwrappedResults[\(indexPath.row)].artistName = \(unwrappedResults[indexPath.row].artistName)")
-				cell.textLabel.text = unwrappedResults[indexPath.row].name!
-				cell.detailTextLabel.text = unwrappedResults[indexPath.row].artistName!
+			if unwrappedResults.count == 0 {
+				cell.nameLabel.text = "No results found"
+				cell.artistNameLabel.text = ""
 			} else {
-				cell.textLabel.text = "No results found"
-				cell.detailTextLabel.text = ""
+				cell.nameLabel.text = unwrappedResults[indexPath.row].name!
+				cell.artistNameLabel.text = unwrappedResults[indexPath.row].artistName!
 			}
 		}
 		return cell
