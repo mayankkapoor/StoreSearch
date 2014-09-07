@@ -22,8 +22,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 		// Do any additional setup after loading the view, typically from a nib.
 		var cellNib = UINib(nibName: SearchResultCellIdentifier, bundle: nil)
 		self.tableView.registerNib(cellNib, forCellReuseIdentifier: SearchResultCellIdentifier)
-		
 		self.tableView.rowHeight = 80
+		self.searchBar.becomeFirstResponder()
 	}
 
 	override func didReceiveMemoryWarning() {
