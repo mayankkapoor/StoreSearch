@@ -31,7 +31,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 		// Dispose of any resources that can be recreated.
 	}
 	
-	func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if let unwrappedResults = searchResults {
 			if unwrappedResults.count == 0 {
 				return 1
@@ -43,7 +43,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 		}
 	}
 	
-	func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		var cell = tableView.dequeueReusableCellWithIdentifier(SearchResultCellIdentifier) as SearchResultCell
 		if let unwrappedResults = searchResults {
 			if unwrappedResults.count == 0 {
