@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5419E99919CDE3BC00D0569D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5419E99619CDE31A00D0569D /* Alamofire.framework */; };
+		5419E99B19CE1BE900D0569D /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5419E99619CDE31A00D0569D /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		543C47A719BC3B210020FD80 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C479E19BC3B210020FD80 /* Icon-72.png */; };
 		543C47A819BC3B210020FD80 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C479F19BC3B210020FD80 /* Icon-72@2x.png */; };
 		543C47A919BC3B210020FD80 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C47A019BC3B210020FD80 /* Icon-Small-50.png */; };
@@ -42,6 +44,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5419E99519CDE31A00D0569D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5419E99019CDE31A00D0569D /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = Alamofire;
+		};
+		5419E99719CDE31A00D0569D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5419E99019CDE31A00D0569D /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = AlamofireTests;
+		};
 		544A529019AA896A005D8F20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 544A527519AA8969005D8F20 /* Project object */;
@@ -51,7 +67,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5419E99A19CE1B3400D0569D /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5419E99B19CE1BE900D0569D /* Alamofire.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5419E99019CDE31A00D0569D /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = SOURCE_ROOT; };
 		543C479E19BC3B210020FD80 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		543C479F19BC3B210020FD80 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		543C47A019BC3B210020FD80 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -95,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5419E99919CDE3BC00D0569D /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +140,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5419E99119CDE31A00D0569D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5419E99619CDE31A00D0569D /* Alamofire.framework */,
+				5419E99819CDE31A00D0569D /* AlamofireTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		543C479D19BC3B210020FD80 /* Icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +171,7 @@
 				544A527F19AA8969005D8F20 /* StoreSearch */,
 				544A529219AA896A005D8F20 /* StoreSearchTests */,
 				544A527E19AA8969005D8F20 /* Products */,
+				5419E99019CDE31A00D0569D /* Alamofire.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,6 +258,7 @@
 				544A527919AA8969005D8F20 /* Sources */,
 				544A527A19AA8969005D8F20 /* Frameworks */,
 				544A527B19AA8969005D8F20 /* Resources */,
+				5419E99A19CE1B3400D0569D /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -273,6 +316,12 @@
 			mainGroup = 544A527419AA8969005D8F20;
 			productRefGroup = 544A527E19AA8969005D8F20 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5419E99119CDE31A00D0569D /* Products */;
+					ProjectRef = 5419E99019CDE31A00D0569D /* Alamofire.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				544A527C19AA8969005D8F20 /* StoreSearch */,
@@ -280,6 +329,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5419E99619CDE31A00D0569D /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 5419E99519CDE31A00D0569D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5419E99819CDE31A00D0569D /* AlamofireTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AlamofireTests.xctest;
+			remoteRef = 5419E99719CDE31A00D0569D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		544A527B19AA8969005D8F20 /* Resources */ = {
