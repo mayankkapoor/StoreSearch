@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import Foundation
 
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
                             
@@ -59,18 +61,28 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	
 // MARK: UISearchBarDelegate
 	
+	func performStoreRequestWithString(searchString: String) {
+		let urlString = "http://itunes.apple.com/search"
+		let URL: NSURL = NSURL(string: urlString)
+		let params = ["term": searchString]
+		var jsonValue: JSON?
+		Alamofire.request(Alamofire.Method.GET, URL, parameters: params, encoding: Alamofire.ParameterEncoding.URL)
+		.response{ (request, response, data, error) in // This response call is asynchronous, but the rest of the code is synchronous.
+//			println(request)
+//			println(response)
+			jsonValue = JSON(data: data! as NSData)
+			println(jsonValue)
+		}
+	}
+	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar!) {
 //		println("You searched for \(searchBar.text)")
 		searchBar.resignFirstResponder()
 		searchResults = []
-		if searchBar.text != "justin bieber" {
-			for i in 0...2 {
-				let searchResultText = "Fake search result \(i) for "
-				let searchResult: SearchResult = SearchResult(name: searchResultText, artistName: searchBar.text)
-				//			println("searchResult.name = \(searchResult.name) & searchResult.artistName = \(searchResult.artistName)")
-				searchResults?.append(searchResult)
-			}
-		}
+		
+		// Get results from Itunes server
+		performStoreRequestWithString(searchBar.text)
+		
 		tableView.reloadData()
 	}
 

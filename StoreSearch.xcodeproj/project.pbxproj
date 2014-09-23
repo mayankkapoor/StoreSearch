@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5419E99919CDE3BC00D0569D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5419E99619CDE31A00D0569D /* Alamofire.framework */; };
 		5419E99B19CE1BE900D0569D /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5419E99619CDE31A00D0569D /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		543AD86E19D1AE6700F7297A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543AD86D19D1AE6700F7297A /* SwiftyJSON.swift */; };
 		543C47A719BC3B210020FD80 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C479E19BC3B210020FD80 /* Icon-72.png */; };
 		543C47A819BC3B210020FD80 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C479F19BC3B210020FD80 /* Icon-72@2x.png */; };
 		543C47A919BC3B210020FD80 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C47A019BC3B210020FD80 /* Icon-Small-50.png */; };
@@ -83,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		5419E99019CDE31A00D0569D /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = SOURCE_ROOT; };
+		543AD86D19D1AE6700F7297A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		543C479E19BC3B210020FD80 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		543C479F19BC3B210020FD80 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		543C47A019BC3B210020FD80 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 		544A527F19AA8969005D8F20 /* StoreSearch */ = {
 			isa = PBXGroup;
 			children = (
+				543AD86D19D1AE6700F7297A /* SwiftyJSON.swift */,
 				544A528219AA8969005D8F20 /* AppDelegate.swift */,
 				544A528419AA8969005D8F20 /* SearchViewController.swift */,
 				544A528619AA8969005D8F20 /* Main.storyboard */,
@@ -399,6 +402,7 @@
 				544A528519AA8969005D8F20 /* SearchViewController.swift in Sources */,
 				54EDF6A919B1441300BB97B5 /* SearchResult.swift in Sources */,
 				54DAC93E19B5C6AA00E2AE8F /* SearchResultCell.swift in Sources */,
+				543AD86E19D1AE6700F7297A /* SwiftyJSON.swift in Sources */,
 				544A528319AA8969005D8F20 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
