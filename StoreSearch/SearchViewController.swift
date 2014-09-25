@@ -77,20 +77,20 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 		let urlString = "http://itunes.apple.com/search"
 		let URL: NSURL = NSURL(string: urlString)
 		let params = ["term": searchString]
-		var jsonValue: JSON?
+		var jsonResponse: JSON?
 		Alamofire.request(Alamofire.Method.GET, URL, parameters: params, encoding: Alamofire.ParameterEncoding.URL)
 		.responseJSON{ (request, response, jsonData, error) in // This response call is asynchronous, but the rest of the code is synchronous.
 //			println(request)
 //			println(response)
 //			println(jsonData)
 			if let unwrappedJSON: AnyObject = jsonData {
-				jsonValue = JSON(object: unwrappedJSON)
+				jsonResponse = JSON(object: unwrappedJSON)
 			}
-			println(jsonValue)
+			// TODO: Save data into searchResults and reload tableView.
+			println(jsonResponse)
+			// Refresh tableView after savings search Results.
 			self.isLoading = false
 			self.tableView.reloadData()
-			// TODO: Save data into searchResults and reload tableView.
-			// TODO: Show Loading cell
 		}
 	}
 	
