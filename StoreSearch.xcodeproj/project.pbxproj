@@ -19,6 +19,7 @@
 		543C47AD19BC3B210020FD80 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C47A419BC3B210020FD80 /* Icon.png */; };
 		543C47AE19BC3B210020FD80 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C47A519BC3B210020FD80 /* Icon@2x.png */; };
 		543C47AF19BC3B210020FD80 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 543C47A619BC3B210020FD80 /* iTunesArtwork */; };
+		543DA14C19D451A80086EC79 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 543DA14B19D451A80086EC79 /* LoadingCell.xib */; };
 		544A528319AA8969005D8F20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544A528219AA8969005D8F20 /* AppDelegate.swift */; };
 		544A528519AA8969005D8F20 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544A528419AA8969005D8F20 /* SearchViewController.swift */; };
 		544A528819AA8969005D8F20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544A528619AA8969005D8F20 /* Main.storyboard */; };
@@ -94,6 +95,7 @@
 		543C47A419BC3B210020FD80 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		543C47A519BC3B210020FD80 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		543C47A619BC3B210020FD80 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		543DA14B19D451A80086EC79 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		544A527D19AA8969005D8F20 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		544A528119AA8969005D8F20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		544A528219AA8969005D8F20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				54EDF6AA19B2927A00BB97B5 /* Images */,
 				54DAC93B19B5C41A00E2AE8F /* SearchResultCell.xib */,
 				54DAC93D19B5C6AA00E2AE8F /* SearchResultCell.swift */,
+				543DA14B19D451A80086EC79 /* LoadingCell.xib */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				544A528A19AA8969005D8F20 /* Images.xcassets in Resources */,
 				543C47AA19BC3B210020FD80 /* Icon-Small-50@2x.png in Resources */,
 				543C47AF19BC3B210020FD80 /* iTunesArtwork in Resources */,
+				543DA14C19D451A80086EC79 /* LoadingCell.xib in Resources */,
 				54EDF6C419B2927A00BB97B5 /* Placeholder@2x.png in Resources */,
 				54EDF6C719B2927A00BB97B5 /* StoreButton@2x.png in Resources */,
 				54EDF6C619B2927A00BB97B5 /* StoreButton.png in Resources */,

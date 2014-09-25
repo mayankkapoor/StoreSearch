@@ -16,14 +16,18 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	@IBOutlet weak var tableView: UITableView!
 	
 	let SearchResultCellIdentifier = "SearchResultCell"
+	let LoadingCellIdentifier = "LoadingCell"
 
 	var searchResults: [SearchResult]?
+	var isLoading: Bool = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		var cellNib = UINib(nibName: SearchResultCellIdentifier, bundle: nil)
 		self.tableView.registerNib(cellNib, forCellReuseIdentifier: SearchResultCellIdentifier)
+		cellNib = UINib(nibName: LoadingCellIdentifier, bundle: nil)
+		self.tableView.registerNib(cellNib, forCellReuseIdentifier: LoadingCellIdentifier)
 		self.tableView.rowHeight = 80
 		self.searchBar.becomeFirstResponder()
 	}
@@ -34,29 +38,37 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let unwrappedResults = searchResults {
-			if unwrappedResults.count == 0 {
-				return 1
-			} else {
-				return unwrappedResults.count
-			}
+		if (isLoading) {
+			return 1
 		} else {
-			return 0
+			if let unwrappedResults = searchResults {
+				if unwrappedResults.count == 0 {
+					return 1
+				} else {
+					return unwrappedResults.count
+				}
+			} else {
+				return 0
+			}
 		}
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell = tableView.dequeueReusableCellWithIdentifier(SearchResultCellIdentifier) as SearchResultCell
-		if let unwrappedResults = searchResults {
-			if unwrappedResults.count == 0 {
-				cell.nameLabel.text = "No results found"
-				cell.artistNameLabel.text = ""
-			} else {
-				cell.nameLabel.text = unwrappedResults[indexPath.row].name!
-				cell.artistNameLabel.text = unwrappedResults[indexPath.row].artistName!
+		if (isLoading) {
+			return tableView.dequeueReusableCellWithIdentifier(LoadingCellIdentifier) as UITableViewCell
+		} else {
+			var cell = tableView.dequeueReusableCellWithIdentifier(SearchResultCellIdentifier) as SearchResultCell
+			if let unwrappedResults = searchResults {
+				if unwrappedResults.count == 0 {
+					cell.nameLabel.text = "No results found"
+					cell.artistNameLabel.text = ""
+				} else {
+					cell.nameLabel.text = unwrappedResults[indexPath.row].name!
+					cell.artistNameLabel.text = unwrappedResults[indexPath.row].artistName!
+				}
 			}
+			return cell
 		}
-		return cell
 	}
 	
 // MARK: UISearchBarDelegate
@@ -75,6 +87,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 				jsonValue = JSON(object: unwrappedJSON)
 			}
 			println(jsonValue)
+			self.isLoading = false
+			self.tableView.reloadData()
 			// TODO: Save data into searchResults and reload tableView.
 			// TODO: Show Loading cell
 		}
@@ -83,12 +97,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	func searchBarSearchButtonClicked(searchBar: UISearchBar!) {
 //		println("You searched for \(searchBar.text)")
 		searchBar.resignFirstResponder()
+		
+		isLoading = true //Set isLoading to true before searching iTunes store
+		self.tableView.reloadData()
+		
 		searchResults = []
-		
-		// Get results from Itunes server
-		performStoreRequestWithString(searchBar.text)
-		
-		tableView.reloadData()
+		performStoreRequestWithString(searchBar.text) // Get results from Itunes server
 	}
 
 // MARK: UITableViewDelegate
@@ -98,7 +112,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	}
 	
 	func tableView(tableView: UITableView!, willSelectRowAtIndexPath indexPath: NSIndexPath!) -> NSIndexPath! {
-		if searchResults?.count == 0 {
+		if searchResults?.count == 0 || isLoading {
 			return nil
 		} else {
 			return indexPath
