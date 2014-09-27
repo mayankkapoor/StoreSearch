@@ -64,7 +64,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 					cell.artistNameLabel.text = ""
 				} else {
 					cell.nameLabel.text = unwrappedResults[indexPath.row].name!
-					cell.artistNameLabel.text = unwrappedResults[indexPath.row].artistName!
+					cell.artistNameLabel.text = "\(unwrappedResults[indexPath.row].artistName!) (\(unwrappedResults[indexPath.row].kind!))"
 				}
 			}
 			return cell
@@ -73,21 +73,61 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 	
 // MARK: UISearchBarDelegate
 	
+	func showNetworkError() {
+		let alertView = UIAlertView(title: "Whoops", message: "There was an error reading from the iTunes Store. Please try again.", delegate: nil, cancelButtonTitle: "OK")
+		alertView.show()
+	}
+	
+	func parseTrack(result: JSON) -> SearchResult {
+		let name = result["trackName"].stringValue!
+		let artistName = result["artistName"].stringValue!
+		let artworkURL60 = result["artworkUrl60"].stringValue!
+		let artworkURL100 = result["artworkUrl100"].stringValue!
+		let storeURL = result["trackViewUrl"].stringValue!
+		let kind = result["kind"].stringValue!
+		let price = result["trackPrice"].doubleValue!
+		let currency = result["currency"].stringValue!
+		let genre = result["primaryGenreName"].stringValue!
+		let searchResult = SearchResult(name: name, artistName: artistName, artworkURL60: artworkURL60, artworkURL100: artworkURL100, storeURL: storeURL, kind: kind, price: price, currency: currency, genre: genre)
+		return searchResult
+	}
+	
+	func parseJSON(jsonResponse: JSON) {
+		if let resultCount = jsonResponse["resultCount"].integerValue {
+			// TODO: Complete parseJSON
+			if let results = jsonResponse["results"].arrayValue {
+				for result in results {
+//					println(result)
+					if result["wrapperType"].stringValue == "track" {
+						let searchResult: SearchResult = parseTrack(result)
+						searchResults?.append(searchResult)
+					}
+				}
+			}
+		} else {
+			println("Error getting resultCount")
+		}
+	}
+	
 	func performStoreRequestWithString(searchString: String) {
 		let urlString = "http://itunes.apple.com/search"
 		let URL: NSURL = NSURL(string: urlString)
 		let params = ["term": searchString]
 		var jsonResponse: JSON?
 		Alamofire.request(Alamofire.Method.GET, URL, parameters: params, encoding: Alamofire.ParameterEncoding.URL)
-		.responseJSON{ (request, response, jsonData, error) in // This response call is asynchronous, but the rest of the code is synchronous.
+		.responseJSON{ (request, response, jsonData, error) in // This response call is asynchronous
 //			println(request)
 //			println(response)
 //			println(jsonData)
 			if let unwrappedJSON: AnyObject = jsonData {
 				jsonResponse = JSON(object: unwrappedJSON)
 			}
-			// TODO: Save data into searchResults and reload tableView.
-			println(jsonResponse)
+			// Save data into searchResults and reload tableView.
+			if let unwrappedJSON = jsonResponse {
+				self.parseJSON(unwrappedJSON)
+			} else {
+				self.showNetworkError()
+			}
 			// Refresh tableView after savings search Results.
 			self.isLoading = false
 			self.tableView.reloadData()
@@ -98,11 +138,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 //		println("You searched for \(searchBar.text)")
 		searchBar.resignFirstResponder()
 		
-		isLoading = true //Set isLoading to true before searching iTunes store
+		isLoading = true // Set isLoading to true before searching iTunes store
 		self.tableView.reloadData()
 		
 		searchResults = []
 		performStoreRequestWithString(searchBar.text) // Get results from Itunes server
+		
+		isLoading = false
+		self.tableView.reloadData()
 	}
 
 // MARK: UITableViewDelegate
